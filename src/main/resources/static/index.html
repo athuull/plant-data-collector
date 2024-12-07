@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plant Entry Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-size: 1.1em;
+            color: #555;
+            margin-bottom: 8px;
+            display: inline-block;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1em;
+            box-sizing: border-box;
+            background-color: #f9f9f9;
+        }
+
+        input:focus, textarea:focus {
+            border-color: #4CAF50;
+            background-color: #fff;
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Enter Plant Information</h2>
+
+    <form id="plantForm">
+        <div class="form-group">
+            <label for="name">Plant Name:</label><br>
+            <input type="text" id="name" name="name" required><br><br>
+        </div>
+
+        <div class="form-group">
+            <label for="scientificName">Scientific Name:</label><br>
+            <input type="text" id="scientificName" name="scientificName" required><br><br>
+        </div>
+
+        <div class="form-group">
+            <label for="description">Description:</label><br>
+            <textarea id="description" name="description" required></textarea><br><br>
+        </div>
+
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+<script>
+    document.getElementById("plantForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        const plantData = {
+            name: document.getElementById("name").value,
+            scientificName: document.getElementById("scientificName").value,
+            description: document.getElementById("description").value
+        };
+
+        fetch("/api/createPlants", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(plantData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert("Plant added successfully!");
+            document.getElementById("plantForm").reset(); // Reset form
+        })
+        .catch(error => {
+            console.error("Error:", error);
+            alert("Error adding plant.");
+        });
+    });
+</script>
+
+</body>
+</html>
