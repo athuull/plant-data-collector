@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <!-- Link to the CSS file -->
+    <link th:href="@{/css/styles.css}" rel="stylesheet" type="text/css"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${plant.name}">Plant Details</title> <!-- Dynamically set the title -->
+</head>
+<body>
+
+<!-- Main Content Section -->
+<section class="card mainContent plants">
+    <h1 th:text="${plant.name}">Plant Name</h1> <!-- Dynamically display the plant name -->
+
+    <h2>Botanical Name</h2>
+    <p th:text="${plant.scientificName}">Botanical Name</p> <!-- Dynamically display the botanical name -->
+
+    <h2>Description</h2>
+    <p th:text="${plant.description}">Description</p> <!-- Dynamically display the description -->
+
+</section>
+
+<!-- Footer Section -->
+<footer>
+    <p>&copy; 2024 Coding Club - RVCAS</p>
+</footer>
+
+</body>
+</html>

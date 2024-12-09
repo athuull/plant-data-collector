@@ -31,4 +31,9 @@ public class PlantService {
     public Optional<Plant> getPlantById(Long id) {
         return plantRepository.findById(id);
     }
+
+    // Get a plant by name
+    public Optional<Plant> getPlantByName(String name) {
+        return plantRepository.findByName(name);
+    }
 }

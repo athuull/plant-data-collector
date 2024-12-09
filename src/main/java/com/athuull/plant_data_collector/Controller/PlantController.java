@@ -5,6 +5,7 @@ import com.athuull.plant_data_collector.Service.PlantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -38,4 +39,6 @@ public class PlantController {
     public Optional<Plant> getPlantById(@PathVariable Long id) {
         return plantService.getPlantById(id);
     }
+
+
 }
