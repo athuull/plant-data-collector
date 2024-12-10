@@ -40,5 +40,10 @@ public class PlantController {
         return plantService.getPlantById(id);
     }
 
+    @DeleteMapping
+    public void deleteAll() {
+        plantService.deletePlants();
+    }
+
 
 }

@@ -12,6 +12,7 @@ public class Plant {
     private String name;
     private String scientificName;
     private String description;
+    private String imageURL;
 
 
     // No-arg constructor
@@ -19,11 +20,12 @@ public class Plant {
     }
 
     // Constructor with all fields
-    public Plant(Long id, String name, String scientificName, String description) {
+    public Plant(Long id, String name, String scientificName, String description , String imageURL) {
         this.id = id;
         this.name = name;
         this.scientificName = scientificName;
         this.description = description;
+        this.imageURL = imageURL;
     }
 
     // Getters and Setters
@@ -58,10 +60,16 @@ public class Plant {
     public void setDescription(String description) {
         this.description = description;
     }
+    public String getImageURL() {
+        return imageURL;
+    }
+    public void setImageURL(String imageURL){
+        this.imageURL = imageURL;
+    }
 
     // toString method for better logging
     @Override
     public String toString() {
-        return "Plant{id=" + id + ", name='" + name + "', scientificName='" + scientificName + "', description='" + description + "'}";
+        return "Plant{id=" + id + ", name='" + name + "', scientificName='" + scientificName + "', description='" + description + "', imageURL='" + imageURL + "'}";
     }
 }

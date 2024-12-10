@@ -27,7 +27,7 @@ public class PageController {
     public String getPlantByName(@RequestParam(value = "name") String name, Model model) {
         Optional<Plant> plant = plantService.getPlantByName(name);
         if (plant.isPresent()) {
-            model.addAttribute("plant", plant.get());  // Unwrap the Optional and add the Plant object to the model
+            model.addAttribute("plant", plant.get());
         } else {
             model.addAttribute("error", "Plant not found!");  // Handle the case where the plant is not found
         }

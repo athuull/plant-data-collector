@@ -13,6 +13,10 @@
 <section class="card mainContent plants">
     <h1 th:text="${plant.name}">Plant Name</h1> <!-- Dynamically display the plant name -->
 
+    <div class = "imgPlants image-container">
+    <img th:src ="${plant.imageURL}" th:alt="${plant.name}">
+    </div>
+
     <h2>Botanical Name</h2>
     <p th:text="${plant.scientificName}">Botanical Name</p> <!-- Dynamically display the botanical name -->
 

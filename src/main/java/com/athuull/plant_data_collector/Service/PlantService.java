@@ -36,4 +36,9 @@ public class PlantService {
     public Optional<Plant> getPlantByName(String name) {
         return plantRepository.findByName(name);
     }
+
+    // Delete all records
+    public void deletePlants() {
+        plantRepository.deleteAll();
+    }
 }
