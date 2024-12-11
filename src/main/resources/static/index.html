@@ -72,6 +72,16 @@
         .form-group {
             margin-bottom: 20px;
         }
+
+        .qr-code-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .qr-code-container img {
+            width: 150px;
+            height: 150px;
+        }
     </style>
 </head>
 <body>
@@ -101,12 +111,18 @@
 
         <button type="submit">Submit</button>
     </form>
+
+    <div class="qr-code-container" id="qrCodeContainer" style="display:none;">
+        <h3>Generated QR Code for Plant</h3>
+        <img id="qrCodeImage" src="" alt="QR Code">
+    </div>
 </div>
 
 <script>
     document.getElementById("plantForm").addEventListener("submit", function(event) {
         event.preventDefault();
 
+        // Get plant data from the form
         const plantData = {
             name: document.getElementById("name").value,
             scientificName: document.getElementById("scientificName").value,
@@ -114,6 +130,7 @@
             imageURL: document.getElementById("imageURL").value
         };
 
+        // Using createPlants REST API to store the data
         fetch("/api/createPlants", {
             method: "POST",
             headers: {
@@ -124,7 +141,25 @@
         .then(response => response.json())
         .then(data => {
             alert("Plant added successfully!");
-            document.getElementById("plantForm").reset(); // Reset form
+
+            // Get the plant name entered by the user
+            const plantName = plantData.name;
+
+            // IP and port
+            const ip = window.location.hostname;
+            const port = window.location.port
+
+            const qrCodeUrl = `http://${ip}:${port}/qr/?name=${encodeURIComponent(plantName)}`;
+
+            // generating the QR CODE by using the qr generator API
+            const qrImageUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(qrCodeUrl)}`;
+
+            // Display the QR code
+            document.getElementById("qrCodeImage").src = qrImageUrl;
+            document.getElementById("qrCodeContainer").style.display = "block"; // Show the QR code container
+
+            // Reset the form
+            document.getElementById("plantForm").reset();
         })
         .catch(error => {
             console.error("Error:", error);
