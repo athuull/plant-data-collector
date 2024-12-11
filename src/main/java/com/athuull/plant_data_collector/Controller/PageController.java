@@ -28,7 +28,7 @@ public class PageController {
         if (plant.isPresent()) {
             model.addAttribute("plant", plant.get());
         } else {
-            model.addAttribute("error", "Plant not found!");  // Handle the case where the plant is not found
+            model.addAttribute("error", "Plant not found!");
         }
         return "index";
     }
