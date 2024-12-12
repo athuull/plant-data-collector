@@ -11,6 +11,7 @@ public class Plant {
     private Long id;
     private String name;
     private String scientificName;
+    @Column(length = 1000)
     private String description;
     private String imageURL;
 
